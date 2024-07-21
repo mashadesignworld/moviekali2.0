@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import Image from "next/image";
-import Input from "./components/input";
+import Input from "../components/input";
 import axios from "axios";
 import { signIn } from 'next-auth/react';
 
@@ -56,10 +56,11 @@ const Auth = () => {
 
 
     return (
-        <div className="relative h-full w-full bg-[url('/images/hero2.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
+
+        <div className="relative h-full w-full bg-[url('/images/hero2.jpg')] bg-no-repeatrepeat bg-center bg-fixed bg-cover">
             <div className="bg-black w-full h-full lg:bg-opacity-50">
                 <nav className="px-12 py-5">
-                    <h1 className="text-4xl font-bold underline text-white">MovieKali</h1>
+                    <h1 className="text-4xl font-extrabold  text-white">MOVIE KALI</h1>
                 </nav>
                 <div className="flex justify-center">
                     <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md">

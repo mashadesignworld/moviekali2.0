@@ -1,8 +1,14 @@
+import Image from 'next/image';
+import { NextPageContext } from 'next';
+import { getSession } from 'next-auth/react';
+import Navbar from 'components/Navbar'; // Ensure this path is correct
+import Billboard from 'components/Billboard';
+import MovieList from 'components/MovieList';
+import useMovieList from "hooks/useMovieList"
+import useFavorites from 'hooks/useFavorites';
+import InfoModal from 'components/InfoModal';
+import useInfoModal from 'hooks/useInfoModal';
 
-import Image from "next/image";
-import { NextPageContext } from "next";
-import { getSession, signOut } from "next-auth/react";
-import useCurrentUser from "hooks/useCurrentUser";
 
 
 export async function getServerSideProps(context: NextPageContext) {
@@ -13,31 +19,29 @@ export async function getServerSideProps(context: NextPageContext) {
       redirect: {
         destination: '/auth',
         permanent: false,
-      }
-    }
+      },
+    };
   }
 
   return {
-    props: {}
-  }
-
+    props: {},
+  };
 }
-
 
 export default function Home() {
-  const { data: user } = useCurrentUser();
-  return (
+  const { data: movies = [] } = useMovieList();
+  const { data: favorites = [] } = useFavorites();
+  const { isOpen, closeModal } = useInfoModal();
 
-    <div className="relative h-full w-full bg-[url('/images/hero3.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
-      <div className="bg-black w-full h-full lg:bg-opacity-50">
-        <nav className="px-12 py-5">
-          <h1 className="text-4xl font-bold underline text-white">MovieKali</h1>
-          <p className="text-white">Logged in as : {user?.email}</p>
-          <button className="h-10 w-full bg-white"
-            onClick={() => signOut()}>Log Out</button>
-        </nav>
+  return (
+    <>
+      <InfoModal visible={isOpen} onClose={closeModal} />
+      <Navbar />
+      <Billboard />
+      <div className='pb-40'>
+        <MovieList title="Trending Now" data={movies} />
+        <MovieList title="My Movie List" data={favorites} />
       </div>
-    </div>
+    </>
   );
 }
-

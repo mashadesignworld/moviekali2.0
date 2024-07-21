@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 body {
-  background-image: url('/images/hero2.jpg');
-  background-repeat: no-repeat;
+  background-color: black;
+  background-repeat: repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
-  @apply bg-zinc-900 h-full overflow-x-hidden;
+
 
 }
 

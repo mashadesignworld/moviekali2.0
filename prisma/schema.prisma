@@ -68,7 +68,7 @@ model VerificationToken {
 }
 
 
-model Movel {
+model Movie {
    id String @id @default(auto()) @map("_id") @db.ObjectId
    title String
    description String
@@ -76,4 +76,6 @@ model Movel {
    thumbnailUrl String
    genre String
    duration String
+
+   @@map("Movel")
 }
